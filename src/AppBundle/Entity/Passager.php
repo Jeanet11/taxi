@@ -93,5 +93,10 @@ class Passager
     {
         return $this->prenom;
     }
-}
 
+   public function __toString()
+    {
+        
+        return $this->getPrenom(). ' '. $this->getNom();
+    } 
+}
