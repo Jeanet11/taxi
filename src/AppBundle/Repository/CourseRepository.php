@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class CourseRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+public function getCoursesChauffeur($id)
+{
+  $qb = $this->createQueryBuilder('c');
+  $qb ->join('c.chauffeur', 'd')
+      ->addSelect('d')
+      ->where('d.id = :id')
+      ->setParameter('id',$id);
+ 
+  return $qb->getQuery()
+            ->getResult();
+}    
 }
