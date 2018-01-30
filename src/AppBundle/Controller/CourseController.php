@@ -15,6 +15,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class CourseController extends Controller
 {
 
+    /**
+     * Lists all course of one driver.
+     *
+     * @Route("/list/{id}", name="admin_course_list_chauffeur")
+     * @Method("GET")
+     */
+    public function listChauffeurAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $courses = $em->getRepository('AppBundle:Course')->getCoursesChauffeur($id);
+
+        return $this->render('course/list.html.twig', array(
+            'courses' => $courses,
+        ));
+    }
 
     /**
      * Lists all course entities details.
